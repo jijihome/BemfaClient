@@ -36,7 +36,7 @@
     ```javascript
     const BemfaClient = require("./scripts/bemfa-client.js")
     const uid = "你的用户私钥" // 从巴法云控制台获取
-    const type = 2 // 协议类型，例如，2 表示 HTTP
+    const type = 1 // 协议类型，例如，2 表示 MQTT
     const client = new BemfaClient(uid, type)
     ```
 
