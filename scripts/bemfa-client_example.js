@@ -1,7 +1,7 @@
 const BemfaClient = require("./bemfa-client")
 
 // 初始化BemfaClient实例
-const uid = "7801e4ba1bf7406593d47250797860fd" // 请替换为你的实际私钥
+const uid = "请替换为你的实际私钥" // 请替换为你的实际私钥
 const type = 3 // 使用TCP协议
 const client = new BemfaClient(uid, type)
 
