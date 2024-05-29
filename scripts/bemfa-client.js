@@ -1,9 +1,3 @@
-/**
- * scripts/bemfa-client.js
- * BemfaClient 类提供与巴法云服务互动的方法。
- * 它允许发送消息、检索消息、管理主题等。
- * https://cloud.bemfa.com/docs/src/api_device.html
- */
 class BemfaClient {
     /**
      * 使用给定的用户标识符和协议类型构造一个新的 BemfaClient 实例。
@@ -127,33 +121,56 @@ class BemfaClient {
 
     // 辅助函数，用于处理网络请求
     async post(url, body) {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
+        return new Promise((resolve, reject) => {
+            $http.post({
+                url: url,
+                header: {
+                    "Content-Type": "application/json",
+                },
+                body: body,
+                handler: function (resp) {
+                    if (resp.error) {
+                        reject(resp.error)
+                    } else {
+                        resolve(resp.data)
+                    }
+                },
+            })
         })
-        return response.json()
     }
 
     async postForm(url, body) {
-        const formBody = Object.keys(body)
-            .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(body[key]))
-            .join("&")
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: formBody,
+        return new Promise((resolve, reject) => {
+            $http.post({
+                url: url,
+                header: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: body,
+                handler: function (resp) {
+                    if (resp.error) {
+                        reject(resp.error)
+                    } else {
+                        resolve(resp.data)
+                    }
+                },
+            })
         })
-        return response.json()
     }
 
     async get(url) {
-        const response = await fetch(url)
-        return response.json()
+        return new Promise((resolve, reject) => {
+            $http.get({
+                url: url,
+                handler: function (resp) {
+                    if (resp.error) {
+                        reject(resp.error)
+                    } else {
+                        resolve(resp.data)
+                    }
+                },
+            })
+        })
     }
 }
 
