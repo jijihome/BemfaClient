@@ -4,7 +4,7 @@
 const BemfaClient = require("./scripts/bemfa-client.js")
 
 // 配置
-const uid = "你的用户私钥"
+const uid = "7801e4ba1bf7406593d47250797860fd"
 const type = 1 // MQTT 协议
 
 const client = new BemfaClient(uid, type)
